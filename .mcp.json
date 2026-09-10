@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "roost": {
+      "type": "http",
+      "url": "https://roost-connectors.chadwickboseman1675.workers.dev/mcp"
+    }
+  }
+}

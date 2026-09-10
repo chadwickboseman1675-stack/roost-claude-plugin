@@ -1,0 +1,12 @@
+{
+  "name": "roost",
+  "version": "1.0.0",
+  "description": "Find your connected coursework, understand assignments, and study from saved course notes with Roost.",
+  "author": {
+    "name": "Roost",
+    "url": "https://roostai.app"
+  },
+  "homepage": "https://roostai.app",
+  "repository": "https://github.com/chadwickboseman1675-stack/roost-claude-plugin",
+  "keywords": ["education", "study", "coursework", "assignments", "notes", "roost"]
+}

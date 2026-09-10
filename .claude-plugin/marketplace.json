@@ -1,0 +1,18 @@
+{
+  "name": "roost-plugins",
+  "owner": {
+    "name": "Roost"
+  },
+  "metadata": {
+    "description": "Roost study tools for Claude."
+  },
+  "plugins": [
+    {
+      "name": "roost",
+      "source": "./",
+      "description": "Find your connected coursework, understand assignments, and study from saved course notes with Roost.",
+      "category": "education",
+      "homepage": "https://roostai.app"
+    }
+  ]
+}
