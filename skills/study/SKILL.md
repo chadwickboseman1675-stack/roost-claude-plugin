@@ -14,6 +14,8 @@ Use the connected Roost MCP tools to ground help in the student's own coursework
 3. Use `search` for assignments and indexed readings. An empty `query` lists saved work; `courseId` narrows the class and `status` accepts `all`, `unfinished`, or `completed`. Follow returned `nextCursor` values until null before claiming complete results, including saved manual assignments. Search without a course filter for unmatched or older other-platform work. Search returns metadata, not the source document's contents.
 4. Preserve requested date and completion filters when trying alternate assignment wording. Use an explicit timezone offset for `dueAfter` and `dueBefore`. Imported `dueAt` values retain their offsets; manual `dueDate` and `dueTime` are local wall dates. Do not invent a timezone or a midnight deadline. Include undated work when no date filter is requested, and label it separately when it is relevant to planning. Describe results as saved coursework rather than every assignment that exists at the school.
 
+For manual tasks, use `search` results and its completion filters to determine whether work is complete. A manual task's `fetch` summary can currently default to `not_started` even when search correctly shows it completed; do not overwrite verified search status with that default.
+
 ## Read before explaining
 
 - Call `fetch` on each selected assignment ID before describing its questions, instructions, rubric, or required reading. Use a focused `query` for the relevant excerpts. Roost reuses the school connection already saved in the student's account.
@@ -35,6 +37,8 @@ Keep retrieval relevant to the request. Do not bulk-fetch every document simply 
 If the MCP tools require authorization, direct the student to connect their Roost account through Claude's connection interface. If `needsReconnect` is true, share the returned `manageUrl`, ask the student to renew the school login in Roost, and retry `fetch` after they return. For other failures, report the returned reason and Roost recovery guidance. Do not treat a parse error, permission failure, or rate limit as an expired school login. Avoid repeated retries while the underlying condition remains unchanged.
 
 Use `connection_status` to explain saved connection state and the last successful import; follow `nextOffset` before claiming complete connection coverage. A connected status or recent import does not prove the school session is currently valid or the document was read. Source URLs are citations: the assistant's browser does not share Roost's saved school session. Do not open a separate school login or request a duplicate upload as the routine workaround; use those alternatives only when the student explicitly chooses them.
+
+When `schoolSource.status` is `not_applicable`, the task is manual and has no school source to reconnect. If it has only metadata, explain that saved instructions or notes are missing; do not send the student to school sign-in because of a generic connection warning.
 
 ## Respect data and action boundaries
 
